@@ -21,7 +21,6 @@ function CESearch(toSearch,page)
   page = page*10
   local cse_tok = getUrl("https://raw.githubusercontent.com/adhptrh/cesearch/main/cse_tok.txt")
   local data = getUrl("https://cse.google.com/cse/element/v1?rsz=filtered_cse&num=10&hl=en&source=gcsc&gss=.com&start="..page.."&cselibv=26b8d00a7c7a0812&cx=009081794347989224031:rrizk45lqzi&q="..toSearch.."&safe=off&cse_tok="..cse_tok.."&exp=csqr,cc&oq="..toSearch.."&gs_l=partner-generic.3...239409.239966.2.240083.0.0.0.0.0.0.0.0..0.0.csems%2Cnrl%3D13...0.239899j57300019903j5j1...1.34.partner-generic..0.0.0.&callback=google.search.cse.api8872")
-  print(data)
   data = data:sub(35)
   data = data:sub(0,#data-2)
   data = json.decode(data)
