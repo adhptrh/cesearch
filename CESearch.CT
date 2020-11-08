@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <Forms>
+    <frmCESearch Class="TCEForm" Encoding="Ascii85">rB%yr,eQ:{j$*A%T[:4YMmNE%vWrmLU3F*%a-778gpi1V=1tn;WJS#g!.vkyKsNn:ZVP0augcFPcleS=6E%W)qj}V(bMD-8uK%=V?}3CNnZ7$d6LRUy/kB5]jLI.6aKUD)w:nwWESblu[rd7-V%7VI[AZl1#l8QG!D,gR:[qA9vQ3w,R3doas@a)EG,_uT)N3_ig3$qBPU*Pvf-5P}gU0SCN5[K-^I47w4?(HR06SF471JT6=bE:E8B/5+DGy@IGiQ%3.QKyZ:rkr;ywzDOx*:$i#1dH$?q$NegY*G=MoeOaY]?BME9E[fy:fNqw{JFyj-y1G#ZRjgeAuXDX8b;AG(qA78M-1B)lo/#l,tivPxvdg^Zm_X@HG+[8i]GLGMG^cY.:?$t2WDL8,D#:*qhe^L1HEup+$ih$,C//43op+)DGR7DJm64HY[g}pQ^,7AFFtsxXGq+/+9AT%;FDJi8MlJ.CmsoGX.Kwdev[37nDEA*A}sc(xO1xKc^l_f]@hVfgm:1YToGfW8.[Rp_:!5#rEUosV^,Q!sqtkJ0=_k@5#vMym=q9Z:Tl4zeRvWXAA?zcYHwumRjX,TQU!G:N%cv1L1cyN_{F]w@r+TcP,IJh@}VCK_VNzF7nn^TI%k2w1yaNSBnC+[q1_6^xyevR;8iiVei(c/JxaP3@{Md.b4q#VgA73DEGGB=kdNfERG8npV4:+m]ZllVgWM0;R^1BoxVTW]QBqnL2tABeD6RpZp:bpvvJC0a7XR/:iC0revRXR;$YUV30zyiI.I?xJ7M5Wrp4y:sJbhf-?8PENr@MAarQy1JX;isgxi*XbP2hZLDbG{S)e}5T7pkXzkWi!+L0(?^5s)^,HpTnIzFJXq)2o_qA9=q])7-rVZ6M{FB*#;;c)-,e)y98Yjs}M=mW)M;v5hmhA[Kt2wSIXCA^Q?Sv8TX;fZrLG7]p(Dj1;jgfjwaXFP+%h!QYm)-ql?HAxetQbvMAkr}Zk+6Q10c/Xx!V@^/!TarwqYmGn;-po4[a:mOc%)?gZx_DQfcUtMBRdms_VX27gx_D{=DbEuXuY:k%(OG0?9MdJflTPuyETP]-pn?(A+z)N^c{_yLs,RuX=/*</frmCESearch>
+  </Forms>
+  <CheatEntries/>
+  <UserdefinedSymbols/>
+  <LuaScript>--// JSON Library : https://github.com/rxi/json.lua
+local a={_version="0.1.2"}local b;local c={["\\"]="\\",["\""]="\"",["\b"]="b",["\f"]="f",["\n"]="n",["\r"]="r",["\t"]="t"}local d={["/"]="/"}for e,f in pairs(c)do d[f]=e end;local function g(h)return"\\"..(c[h]or string.format("u%04x",h:byte()))end;local function i(j)return"null"end;local function k(j,l)local m={}l=l or{}if l[j]then error("circular reference")end;l[j]=true;if rawget(j,1)~=nil or next(j)==nil then local n=0;for e in pairs(j)do if type(e)~="number"then error("invalid table: mixed or invalid key types")end;n=n+1 end;if n~=#j then error("invalid table: sparse array")end;for o,f in ipairs(j)do table.insert(m,b(f,l))end;l[j]=nil;return"["..table.concat(m,",").."]"else for e,f in pairs(j)do if type(e)~="string"then error("invalid table: mixed or invalid key types")end;table.insert(m,b(e,l)..":"..b(f,l))end;l[j]=nil;return"{"..table.concat(m,",").."}"end end;local function p(j)return'"'..j:gsub('[%z\1-\31\\"]',g)..'"'end;local function q(j)if j~=j or j&lt;=-math.huge or j&gt;=math.huge then error("unexpected number value '"..tostring(j).."'")end;return string.format("%.14g",j)end;local r={["nil"]=i,["table"]=k,["string"]=p,["number"]=q,["boolean"]=tostring}b=function(j,l)local s=type(j)local t=r[s]if t then return t(j,l)end;error("unexpected type '"..s.."'")end;function a.encode(j)return b(j)end;local u;local function v(...)local m={}for o=1,select("#",...)do m[select(o,...)]=true end;return m end;local w=v(" ","\t","\r","\n")local x=v(" ","\t","\r","\n","]","}",",")local y=v("\\","/",'"',"b","f","n","r","t","u")local z=v("true","false","null")local A={["true"]=true,["false"]=false,["null"]=nil}local function B(C,D,E,F)for o=D,#C do if E[C:sub(o,o)]~=F then return o end end;return#C+1 end;local function G(C,D,H)local I=1;local J=1;for o=1,D-1 do J=J+1;if C:sub(o,o)=="\n"then I=I+1;J=1 end end;error(string.format("%s at line %d col %d",H,I,J))end;local function K(n)local t=math.floor;if n&lt;=0x7f then return string.char(n)elseif n&lt;=0x7ff then return string.char(t(n/64)+192,n%64+128)elseif n&lt;=0xffff then return string.char(t(n/4096)+224,t(n%4096/64)+128,n%64+128)elseif n&lt;=0x10ffff then return string.char(t(n/262144)+240,t(n%262144/4096)+128,t(n%4096/64)+128,n%64+128)end;error(string.format("invalid unicode codepoint '%x'",n))end;local function L(M)local N=tonumber(M:sub(1,4),16)local O=tonumber(M:sub(7,10),16)if O then return K((N-0xd800)*0x400+O-0xdc00+0x10000)else return K(N)end end;local function P(C,o)local m=""local Q=o+1;local e=Q;while Q&lt;=#C do local R=C:byte(Q)if R&lt;32 then G(C,Q,"control character in string")elseif R==92 then m=m..C:sub(e,Q-1)Q=Q+1;local h=C:sub(Q,Q)if h=="u"then local S=C:match("^[dD][89aAbB]%x%x\\u%x%x%x%x",Q+1)or C:match("^%x%x%x%x",Q+1)or G(C,Q-1,"invalid unicode escape in string")m=m..L(S)Q=Q+#S else if not y[h]then G(C,Q-1,"invalid escape char '"..h.."' in string")end;m=m..d[h]end;e=Q+1 elseif R==34 then m=m..C:sub(e,Q-1)return m,Q+1 end;Q=Q+1 end;G(C,o,"expected closing quote for string")end;local function T(C,o)local R=B(C,o,x)local M=C:sub(o,R-1)local n=tonumber(M)if not n then G(C,o,"invalid number '"..M.."'")end;return n,R end;local function U(C,o)local R=B(C,o,x)local V=C:sub(o,R-1)if not z[V]then G(C,o,"invalid literal '"..V.."'")end;return A[V],R end;local function W(C,o)local m={}local n=1;o=o+1;while 1 do local R;o=B(C,o,w,true)if C:sub(o,o)=="]"then o=o+1;break end;R,o=u(C,o)m[n]=R;n=n+1;o=B(C,o,w,true)local X=C:sub(o,o)o=o+1;if X=="]"then break end;if X~=","then G(C,o,"expected ']' or ','")end end;return m,o end;local function Y(C,o)local m={}o=o+1;while 1 do local Z,j;o=B(C,o,w,true)if C:sub(o,o)=="}"then o=o+1;break end;if C:sub(o,o)~='"'then G(C,o,"expected string for key")end;Z,o=u(C,o)o=B(C,o,w,true)if C:sub(o,o)~=":"then G(C,o,"expected ':' after key")end;o=B(C,o+1,w,true)j,o=u(C,o)m[Z]=j;o=B(C,o,w,true)local X=C:sub(o,o)o=o+1;if X=="}"then break end;if X~=","then G(C,o,"expected '}' or ','")end end;return m,o end;local _={['"']=P,["0"]=T,["1"]=T,["2"]=T,["3"]=T,["4"]=T,["5"]=T,["6"]=T,["7"]=T,["8"]=T,["9"]=T,["-"]=T,["t"]=U,["f"]=U,["n"]=U,["["]=W,["{"]=Y}u=function(C,D)local X=C:sub(D,D)local t=_[X]if t then return t(C,D)end;G(C,D,"unexpected character '"..X.."'")end;function a.decode(C)if type(C)~="string"then error("expected argument of type string, got "..type(C))end;local m,D=u(C,B(C,1,w,true))D=B(C,D,w,true)if D&lt;=#C then G(C,D,"trailing garbage")end;return m end local json = {} function json.encode(s) return a.encode(s) end function json.decode(s) return a.decode(s) end
+
+frmCESearch.show()
+
+function CESearch(toSearch,page)
+  local getUrl = getInternet().getURL
+  page = page*10
+  local data = getUrl("https://cse.google.com/cse/element/v1?rsz=filtered_cse&amp;num=10&amp;hl=en&amp;source=gcsc&amp;gss=.com&amp;start="..page.."&amp;cselibv=26b8d00a7c7a0812&amp;cx=009081794347989224031:rrizk45lqzi&amp;q="..toSearch.."&amp;safe=off&amp;cse_tok=AJvRUv13fN1UK10wFdI29w5WUig9:1604782274581&amp;exp=csqr,cc&amp;oq="..toSearch.."&amp;gs_l=partner-generic.3...239409.239966.2.240083.0.0.0.0.0.0.0.0..0.0.csems%2Cnrl%3D13...0.239899j57300019903j5j1...1.34.partner-generic..0.0.0.&amp;callback=google.search.cse.api8872")
+  data = data:sub(35)
+  data = data:sub(0,#data-2)
+  data = json.decode(data)
+
+  return data
+end
+
+local searching = ""
+local boxes = {}
+local page = 0
+
+function buildBoxes(data)
+  for k,v in pairs(boxes) do
+    boxes[k].destroy()
+  end
+  local enter = -2
+  for i=1,#data.results do
+    boxes["box"..i] = createPanel(frmCESearch.ScrollBox1)
+    boxes["box"..i].bevelColor = 0x808080
+    boxes["box"..i].height = 90
+    boxes["box"..i].width = frmCESearch.ScrollBox1.width
+    boxes["box"..i].anchors = "[akTop,akLeft,akRight]"
+    boxes["box"..i].top = enter
+    boxes["box"..i].left = -2
+    enter = enter + 90 -1
+    local titl = createLabel(boxes["box"..i])
+    titl.caption = data.results[i].title
+    titl.font.color = 0xff0000
+    titl.left = 6
+    titl.top = 6
+    titl.Cursor = -21
+    titl.onclick = function()
+      shellExecute(data.results[i].unescapedUrl)
+    end
+    titl.onmouseenter = function(sender)
+      sender.font.style = "fsUnderline"
+    end
+    titl.onmouseleave = function(sender)
+      sender.font.style = ""
+    end
+    local url = createLabel(boxes["box"..i])
+    url.caption = data.results[i].unescapedUrl
+    url.font.color = 0x008000
+    url.left = 6
+    url.top = 22
+    local content = createLabel(boxes["box"..i])
+    content.caption = data.results[i].contentNoFormatting
+    content.font.color = 0x00
+    content.left = 6
+    content.top = 38
+  end
+end
+
+function search(toSearch)
+  frmCESearch.CELabel1.caption = "Current Page : "..page
+  local data = CESearch(toSearch,page)
+  if data.results == nil then showMessage("Not Found") return end
+  buildBoxes(data)
+end
+
+function searchBoxKeyDown(sender, key)
+  if key == VK_RETURN then
+    page = 0
+    searching = sender.text
+    search(sender.text)
+  end
+end
+
+function nextPageClick(sender)
+  page = page + 1
+  search(searching)
+end
+
+function prevPageClick(sender)
+  page = page - 1
+  search(searching)
+end
+
+function cbSOPChange(sender)
+  if sender.checked == true then
+    frmCESearch.formstyle = "fsSystemStayOnTop"
+  else
+    frmCESearch.formstyle = "fsNormal"
+  end
+end
+
+function trackbarChange(sender)
+  frmCESearch.alphablendvalue = sender.position
+end
+
+function githubClick(sender)
+  shellExecute("https://github.com/adhptrh/cesearch")
+end
+
+</LuaScript>
+</CheatTable>
